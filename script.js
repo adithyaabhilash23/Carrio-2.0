@@ -118,3 +118,29 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
+
+// ── SPLIDE CAROUSEL INITIALIZATION ──
+function initSplide() {
+  var el = document.getElementById('choices-splide');
+  if (el && !el.classList.contains('is-initialized')) {
+    try {
+      new Splide(el, {
+        type       : 'slide',
+        perPage    : 2,
+        gap        : '1.5rem',
+        pagination : true,
+        arrows     : true,
+        breakpoints: {
+          768: {
+            perPage: 1,
+          }
+        }
+      }).mount();
+    } catch(e) {
+      console.error('Splide init failed:', e);
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', initSplide);
+window.addEventListener('load', initSplide);
+initSplide();

@@ -793,3 +793,22 @@ footer{
   background:linear-gradient(90deg,var(--teal),var(--gold));
   transition:width .1s linear;
 }
+
+/* ── SPLIDE OVERRIDES ── */
+.splide__pagination__page {
+  background: var(--g200);
+}
+.splide__pagination__page.is-active {
+  background: var(--teal);
+  transform: scale(1.4);
+}
+.splide__arrow {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--sh-sm);
+}
+.splide__arrow svg {
+  fill: var(--teal);
+}
+.splide__track {
+  padding-bottom: 24px; /* Space for pagination */
+}
