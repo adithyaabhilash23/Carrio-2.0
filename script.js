@@ -43,39 +43,7 @@ const tlObs = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 tlObs.observe(tlSection);
 
-// ── COUNTERS
-const counters = [
-  { id: 'c1', target: 500 },
-  { id: 'c2', target: 1800 },
-  { id: 'c3', target: 12 },
-  { id: 'c4', target: 98 }
-];
-function animateCount(el, target, dur = 1800) {
-  const start = performance.now();
-  function step(now) {
-    const p = Math.min((now - start) / dur, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
-    const val = Math.floor(ease * target);
-    el.textContent = val;
-    // pop animation on milestones
-    if (val % Math.max(1, Math.floor(target / 20)) === 0) {
-      el.parentElement.classList.add('popping');
-      setTimeout(() => el.parentElement.classList.remove('popping'), 150);
-    }
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-const statsObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      counters.forEach(c => animateCount(document.getElementById(c.id), c.target));
-      statsObs.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-statsObs.observe(document.getElementById('stats'));
+
 
 // ── SERVICES SCROLL DOTS
 const svcScroll = document.getElementById('svcScroll');
